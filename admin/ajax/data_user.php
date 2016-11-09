@@ -90,4 +90,18 @@ $json_data = array(
 
 echo json_encode($json_data); 
 
+
+/*
+QUERY for display Datatables
+select concat(user_tb.fname, " ", user_tb.lname) as name, user_tb.username, divisi_tb.divisi_name, level_tb.role_level, coalesce(d.fname, "-") as Manager, user_tb.email 
+from user_tb
+inner join divisi_tb
+on user_tb.id_divisi = divisi_tb.id_divisi
+inner join level_tb
+on user_tb.id_level = level_tb.id_level
+left join user_tb d
+on user_tb.id_manager = d.id_user
+;
+*/
+
 ?>
