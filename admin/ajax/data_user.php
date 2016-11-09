@@ -14,24 +14,45 @@ $requestData= $_REQUEST;
 
 $columns = array( 
 
-	0 => 'id_divisi', 
-	1 => 'divisi_name'
+	0 => 'id_user', 
+	1 => 'fname',
+	2 => 'lname',
+	3 => 'username',
+	4 => 'password',
+	5 => 'id_divisi',
+	6 => 'id_level',
+	7 => 'id_manager',
+	8 => 'email'
 );
 
 
-$sql = "SELECT id_divisi, divisi_name ";
-$sql.=" FROM divisi_tb";
+$sql = "SELECT * ";
+$sql.=" FROM user_tb";
 $query=mysqli_query($conn, $sql) or die("employee-grid-data.php: get employees");
 $totalData = mysqli_num_rows($query);
 $totalFiltered = $totalData;
 
 
-$sql = "SELECT id_divisi, divisi_name ";
-$sql.=" FROM divisi_tb WHERE 1=1";
+$sql = "SELECT * ";
+$sql.=" FROM user_tb WHERE 1=1";
 if( !empty($requestData['search']['value']) ) {
-	$sql.=" AND ( id_divisi LIKE '".$requestData['search']['value']."%' ";    
+	$sql.=" AND ( id_user LIKE '".$requestData['search']['value']."%' ";    
 
-	$sql.=" OR divisi_name LIKE '".$requestData['search']['value']."%' )";
+	$sql.=" OR  fname LIKE '".$requestData['search']['value']."%' ";
+
+	$sql.=" OR  lname LIKE '".$requestData['search']['value']."%' ";
+
+	$sql.=" OR  username LIKE '".$requestData['search']['value']."%' ";    
+
+	$sql.=" OR  password LIKE '".$requestData['search']['value']."%' ";    
+
+	$sql.=" OR id_divisi LIKE '".$requestData['search']['value']."%' )";
+
+	$sql.=" OR id_level LIKE '".$requestData['search']['value']."%' )";
+
+	$sql.=" OR id_manager LIKE '".$requestData['search']['value']."%' )";
+
+	$sql.=" OR email LIKE '".$requestData['search']['value']."%' )";
 }
 $query=mysqli_query($conn, $sql) or die("employee-grid-data.php: get employees");
 $totalFiltered = mysqli_num_rows($query); 
@@ -45,8 +66,15 @@ while( $row=mysqli_fetch_array($query) ) {
 	$nestedData=array(); 
 
 	$nestedData[] = "<input type='checkbox'  class='deleteRow' value='".$row['id_divisi']."'  /> #".$number;
-	$nestedData[] = $row["divisi_name"];
-	$nestedData[] = '<button type="button" class="btn btn-default btn-sm center-block" onClick="getDetailDivisi(\''.$row['id_divisi'].'\')">Edit</button>';
+	$nestedData[] = $row["fname"];
+	$nestedData[] = $row["lname"];
+	$nestedData[] = $row["username"];
+	$nestedData[] = $row["password"];
+	$nestedData[] = $row["id_divisi"];
+	$nestedData[] = $row["id_level"];
+	$nestedData[] = $row["id_manager"];
+	$nestedData[] = $row["email"];
+	$nestedData[] = '<button type="button" class="btn btn-default btn-sm center-block" onClick="">Edit</button>';
 	$data[] = $nestedData;
 	$number++;
 }

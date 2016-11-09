@@ -121,13 +121,15 @@ include('ajax/connection.php');
                         <table width="100%" class="table table-striped table-bordered table-hover" id="show_user">
                             <thead>
                             <tr>
-                                <th>Nama</th>
-                                <th>Divisi</th>
-                                <th>Email</th>
+                                <th><input type="checkbox"  id="bulkDelete"  />#No</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
                                 <th>Username</th>
-                                <th>Password</th>
-                                <th>Level</th>
-                                <th>Manager</th>
+                                <th>Passowrd</th>
+                                <th>id_divisi</th>
+                                <th>id_level</th>
+                                <th>id_manager</th>
+                                <th>Email</th>
                                 <th style="width: 60px">Action</th>
                             </tr>
                             </thead>
@@ -282,6 +284,11 @@ include('ajax/connection.php');
 
 <!-- Custom Theme JavaScript -->
 <script src="../dist/js/sb-admin-2.js"></script>
+
+
+<!-- ajax proses -->
+<script type="text/javascript" src="js/script.js"></script>
+<!-- end ajax -->
 
 <script>
     $(document).ready(function() {
