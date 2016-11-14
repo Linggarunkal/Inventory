@@ -30,8 +30,6 @@ if( !empty($requestData['search']['value']) ) {
 	$sql.=" OR email LIKE '".$requestData['search']['value']."%' ";
 	$sql.=" OR divisi_name LIKE '".$requestData['search']['value']."%' ";
 	$sql.=" OR role_level LIKE '".$requestData['search']['value']."%' ";
-	/*$sql.=" OR id_level LIKE '".$requestData['search']['value']."%' ";
-	$sql.=" OR id_manager LIKE '".$requestData['search']['value']."%' ";*/
 
 	$sql.=" OR Manager LIKE '".$requestData['search']['value']."%' )";
 }
