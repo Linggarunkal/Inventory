@@ -136,6 +136,7 @@ include('ajax/connection.php');
                         </table>
 
                         <button class="form-control" data-toggle="modal" data-target="#modalLayout" style="width: 100px">New User</button>
+                        <button class="form-control" data-toggle="modal" data-target="" style="width: 100px">Remove</button>
                     </div>
                 </div>
             </div>
@@ -145,7 +146,7 @@ include('ajax/connection.php');
 </div>
 
 <!-- dialog form insert user -->
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="modalLayout">
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="userSubmit">
     <div class="modal-dialog" role="document" style="width: 500px">
         <div class="modal-content">
             <div class="modal-header">
@@ -171,7 +172,7 @@ include('ajax/connection.php');
                                 $getDiv = "select * from divisi_tb";
                                 $resDiv = $conn->query($getDiv);
                             ?>
-                            <select class="form-control select2">
+                            <select class="form-control select2" id="divSelect">
                                 <?php
                                     if($resDiv->num_rows > 0){
                                         while($row = $resDiv->fetch_assoc()){
@@ -215,7 +216,7 @@ include('ajax/connection.php');
                                 $getlev = "select * from level_tb";
                                 $reslev = $conn->query($getlev);
                             ?>
-                            <select class = "form-control select2" name = "level" id = "level">
+                            <select class = "form-control select2" name = "level" id = "levSelect">
                                 <?php
                                     if($reslev->num_rows > 0){
                                         while($row = $reslev->fetch_assoc()){
@@ -237,7 +238,7 @@ include('ajax/connection.php');
                                 $resManager = $conn->query($getManager);
 
                             ?>
-                            <select class = "form-control select2" name = "manager" id = "manager">
+                            <select class = "form-control select2" name = "manager" id = "manSelect">
                                 <?php
 
                                     if($resManager->num_rows > 0){
@@ -254,7 +255,7 @@ include('ajax/connection.php');
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id = "add_user" onclick="addUser()">Submit</button>
             </div>
         </div>
     </div>
