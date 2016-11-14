@@ -28,7 +28,7 @@ $totalFiltered = $totalData;
 $sql = "SELECT id_divisi, divisi_name ";
 $sql.=" FROM divisi_tb WHERE 1=1";
 if( !empty($requestData['search']['value']) ) {
-	$sql.=" AND ( id_divisi LIKE '".$requestData['search']['value']."%' ";    
+	$sql.=" AND ( id_divisi LIKE '".$requestData['search']['value']."%' ";
 
 	$sql.=" OR divisi_name LIKE '".$requestData['search']['value']."%' )";
 }
