@@ -22,16 +22,21 @@ $(document).ready(function(){
 
 function addUser(){
 
-    var txtNama = $("#txtNama").val();
+    var txtNamaDepan = $("#txtNamaDepan").val();
+    console.log(txtNamaDepan);
+    var txtNamaBelakang = $("#txtNamaBelakang").val();
+    console.log(txtNamaBelakang);
     var divSelect = $("#divSelect").val();
     var txtEmail = $("#txtEmail").val();
     var txtUserName = $("#txtUserName").val();
     var txtPassword = $("#txtPassword").val();
     var levSelect = $("#levSelect").val();
+    console.log(levSelect);
     var manSelect = $("#manSelect").val();
 
     $.post("ajax/addUser.php",{
-        txtNama : txtNama,
+        txtNamaDepan : txtNamaDepan,
+        txtNamaBelakang : txtNamaBelakang,
         divSelect : divSelect,
         txtEmail : txtEmail,
         txtUsername : txtUserName,
@@ -43,7 +48,8 @@ function addUser(){
 
         readUser();
 
-        $("#txtNama").val("");
+        $("#txtNamaDepan").val("");
+        $("#txtNamaBelakang").val("");
         $("#divSelect").val("");
         $("#txtEmail").val("");
         $("#txtUserName").val("");

@@ -157,10 +157,18 @@ include('ajax/connection.php');
                 <table style="width: 100%;font-size: 15px">
                     <tr>
                         <td>
-                            <label>Nama</label>
+                            <label>Nama Depan</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" id="txtNama">
+                            <input type="text" class="form-control" id="txtNamaDepan">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Nama Belakang</label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="txtNamaBelakang">
                         </td>
                     </tr>
                     <tr>
@@ -255,7 +263,7 @@ include('ajax/connection.php');
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" id = "add_user" onclick="">Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id = "add_user" onclick="addUser()">Submit</button>
             </div>
         </div>
     </div>
