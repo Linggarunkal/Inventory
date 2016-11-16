@@ -51,7 +51,7 @@ while( $row=mysqli_fetch_array($query) ) {
 	$nestedData[] = $row["divisi_name"];
 	$nestedData[] = $row["role_level"];
 	$nestedData[] = $row["Manager"];
-	$nestedData[] = '<button type="button" class="btn btn-default btn-sm center-block">Edit</button>';
+	$nestedData[] = '<button type="button" class="btn btn-default btn-sm center-block" onClick="getDetailUser(\''.$row['id_user'].'\')">Edit</button>';
 	
 	$data[] = $nestedData;
 	$i++;

@@ -9,7 +9,7 @@ if(!empty($data_id_array)) {
 	foreach($data_id_array as $id_divisi) {
 		$sql = "DELETE FROM divisi_tb ";
 		$sql.=" WHERE id_divisi = '".$id_divisi."'";
-		$query=mysqli_query($conn, $sql) or die("employee-delete.php: delete employees");
+		$query=mysqli_query($conn, $sql) or die("divisi_delete: delete divisi");
 	}
 }
 ?>

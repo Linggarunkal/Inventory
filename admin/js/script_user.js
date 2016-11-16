@@ -17,46 +17,76 @@ $(document).ready(function(){
             }
         }
     });
-    
+
+    $("#multiDelete").on('click',function() {
+        var status = this.checked;
+        $(".deleteRow").each( function() {
+            $(this).prop("checked",status);
+        });
+    });
+
+    $('#deleteTriger').on("click", function(event){
+        if( $('.deleteRow:checked').length > 0 ){
+            var ids = [];
+            $('.deleteRow').each(function(){
+                if($(this).is(':checked')) {
+                    ids.push($(this).val());
+                }
+            });
+            var ids_string = ids.toString();
+            $.ajax({
+                type: "POST",
+                url: "ajax/deleteUser.php",
+                data: {data_user:ids_string},
+                success: function(result) {
+                    table_user.draw();
+                },
+                async:false
+            });
+
+        }
+    });
+
 });
 
 function addUser(){
 
-    var txtNamaDepan = $("#txtNamaDepan").val();
-    console.log(txtNamaDepan);
-    var txtNamaBelakang = $("#txtNamaBelakang").val();
-    console.log(txtNamaBelakang);
-    var divSelect = $("#divSelect").val();
-    var txtEmail = $("#txtEmail").val();
-    var txtUserName = $("#txtUserName").val();
-    var txtPassword = $("#txtPassword").val();
-    var levSelect = $("#levSelect").val();
-    console.log(levSelect);
-    var manSelect = $("#manSelect").val();
+    var fname = $("#fname").val();
+    //console.log(txtNamaDepan);
+    var lname = $("#lname").val();
+    //console.log(txtNamaBelakang);
+    var id_divisi = $("#id_divisi").val();
+    var email = $("#email").val();
+    var username = $("#username").val();
+    var password = $("#password").val();
+    var id_level = $("#id_level").val();
+    //console.log(levSelect);
+    var id_manager = $("#id_manager").val();
 
     $.post("ajax/addUser.php",{
-        txtNamaDepan : txtNamaDepan,
-        txtNamaBelakang : txtNamaBelakang,
-        divSelect : divSelect,
-        txtEmail : txtEmail,
-        txtUsername : txtUserName,
-        txtPassword : txtPassword,
-        levSelect : levSelect,
-        manSelect : manSelect
+        fname : fname,
+        lname : lname,
+        id_divisi : id_divisi,
+        email : email,
+        username : username,
+        password : password,
+        id_level : id_level,
+        id_manager : id_manager
     }, function (data, status){
         $("#userSubmit").modal("hide");
 
         readUser();
 
-        $("#txtNamaDepan").val("");
-        $("#txtNamaBelakang").val("");
-        $("#divSelect").val("");
-        $("#txtEmail").val("");
-        $("#txtUserName").val("");
-        $("#txtPassword").val("");
-        $("#levSelect").val("");
-        $("#manSelect").val("");
+        $("#fname").val("");
+        $("#lname").val("");
+        $("#id_divisi").val("");
+        $("#email").val("");
+        $("#username").val("");
+        $("#password").val("");
+        $("#id_level").val("");
+        $("#id_manager").val("");
     });
+
 }
 
 function readUser(){
@@ -64,4 +94,36 @@ function readUser(){
     dataUser.ajax.reload(function (json){
        $("#add_user").val(json.lastInput);
     });
+}
+
+
+function getDetailUser(id_user){
+    $("#detail_user_hidden").val(id_user);
+    $.post("ajax/getUserDetail.php", {
+        id_user: id_user
+
+    },
+    function (data, status){
+        var user = JSON.parse(data);
+        $("#fname_update").val(user.fname);
+        $("#lname_update").val(user.lname);
+        //$("#id_divisi_update").val(user.id_divisi);
+        $('#id_divisi_update').append($('<option>',{
+            value: user.id_divisi,
+            text: 'selected'
+        }));
+        $("#email_update").val(user.email);
+        $("#username_update").val(user.username);
+        $("#password_update").val(user.password);
+        $("#id_level_update").append($('<option>',{
+            value: user.id_level,
+            text: 'testing2'
+        }));
+        $("#id_manager_update").append($('<option>',{
+            value: user.id_manager,
+            text: 'testing3'
+        }));
+
+    });
+    $("#userUpdate").modal("show");
 }
