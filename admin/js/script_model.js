@@ -21,4 +21,32 @@ $(document).ready(function(){
         }
     });
 
+    $("#MultiDeleteModel").on('click',function() {
+        var status = this.checked;
+        $(".deleteRow").each( function() {
+            $(this).prop("checked",status);
+        });
+    });
+
+    $('#delete_model').on("click", function(event){
+        if( $('.deleteRow:checked').length > 0 ){
+            var ids = [];
+            $('.deleteRow').each(function(){
+                if($(this).is(':checked')) {
+                    ids.push($(this).val());
+                }
+            });
+            var ids_string = ids.toString();
+            $.ajax({
+                type: "POST",
+                url: "ajax/deleteModel.php",
+                data: {data_model:ids_string},
+                success: function(result) {
+                    model_table.draw();
+                },
+                async:false
+            });
+
+        }
+    });
 });

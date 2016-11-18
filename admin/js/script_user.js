@@ -107,11 +107,9 @@ function getDetailUser(id_user){
         var user = JSON.parse(data);
         $("#fname_update").val(user.fname);
         $("#lname_update").val(user.lname);
-        //$("#id_divisi_update").val(user.id_divisi);
-        $('#id_divisi_update').append($('<option>',{
-            value: user.id_divisi,
-            text: 'selected'
-        }));
+        // console.log(user.id_divisi);
+        $("#id_divisi_update").val(user.id_divisi);
+        
         $("#email_update").val(user.email);
         $("#username_update").val(user.username);
         $("#password_update").val(user.password);
