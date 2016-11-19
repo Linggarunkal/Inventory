@@ -56,7 +56,7 @@ while( $row=mysqli_fetch_array($query) ) {
 //    $nestedData[] = $row["fname"];
     $nestedData[] = $row["qty"];
     $nestedData[] = $row["create_date"];
-    $nestedData[] = '<button type="button" class="btn btn-default btn-sm center-block" onClick="getDetailUser(\''.$row['id_model'].'\')">Edit</button>';
+    $nestedData[] = '<button type="button" class="btn btn-default btn-sm center-block" onClick="getDetailModel(\''.$row['id_model'].'\')">Edit</button>';
 
     $data[] = $nestedData;
     $i++;

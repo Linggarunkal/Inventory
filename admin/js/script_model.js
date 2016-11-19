@@ -50,3 +50,53 @@ $(document).ready(function(){
         }
     });
 });
+
+function readModel(){
+
+    var dataModel = $("#show_model").DataTable();
+    dataModel.ajax.reload(function(json){
+        $("#submitModel").val(json.lastInput);
+    });
+}
+
+function addDataModel(){
+
+    var product_name = $("#product_name").val();
+    var type = $("#type").val();
+    var brand = $("#brand").val();
+    var qty = $("#qty").val();
+
+    $.post("ajax/addModel.php",{
+        product_name : product_name,
+        type : type,
+        brand : brand,
+        qty : qty
+    }, function(data, status){
+        $("#submitModel").modal("hide");
+
+        readModel();
+
+        $("#product_name").val("");
+        $("#type").val("");
+        $("#brand").val("");
+        $("#qty").val("");
+
+    });
+
+    function getDetailModel(id_model){
+        $("#model_id_hidden").val(id_model);
+        $.post("ajax/getDetailModel.php",{
+            id_model: id_model
+        },
+        function (data, status){
+            var model = JSON.parse(data);
+            $("#update_product_name").val(model.product_name);
+            $("#update_type").val(model.type);
+            $("#update_brand").val(model.brand);
+            $("#update_qty").val(model.qty);
+        }
+        );
+        $("#updateDataModel").modal("show");
+    }
+
+}

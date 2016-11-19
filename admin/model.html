@@ -124,7 +124,7 @@
                             </tbody>
                         </table>
 
-                        <button class="form-control" data-toggle="modal" data-target="#addModel" style="width: 100px">New Model</button>
+                        <button class="form-control" data-toggle="modal" data-target="#addDataModel" style="width: 100px">New Model</button>
                         <button class="form-control" id="delete_model" style="width: 100px">Remove</button>
 
                     </div>
@@ -140,8 +140,8 @@
 
 </div>
 
-
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="addModel">
+<!-- Insert to database Modal-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="addDataModel">
     <div class="modal-dialog" role="document" style="width: 500px">
         <div class="modal-content">
             <div class="modal-header">
@@ -174,15 +174,74 @@
                             <input type="text" class="form-control" id="brand">
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <label>Qty</label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="qty">
+                        </td>
+                    </tr>
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id = "submitModel" onclick="addDataModel()">Add</button>
             </div>
         </div>
     </div>
 </div>
 
+<!--update data from database-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="updateDataModel">
+    <div class="modal-dialog" role="document" style="width: 500px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Insert Model</h4>
+            </div>
+            <div class="modal-body">
+                <table style="width: 100%;font-size: 15px">
+                    <tr>
+                        <td>
+                            <label>Product Name</label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="update_product_name">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Type Name</label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="update_type">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Brand Name</label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="update_brand">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Qty</label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="update_qty">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id = "updateModel" onclick="">Add</button>
+                <input type="hidden" id="model_id_hidden">
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- jQuery -->
 <script src="../vendor/jquery/jquery.min.js"></script>
