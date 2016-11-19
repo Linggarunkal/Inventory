@@ -82,10 +82,11 @@ function addDataModel(){
         $("#qty").val("");
 
     });
+}
 
-    function getDetailModel(id_model){
-        $("#model_id_hidden").val(id_model);
-        $.post("ajax/getDetailModel.php",{
+function getDetailModel(id_model){
+    $("#model_id_hidden").val(id_model);
+    $.post("ajax/getDetailModel.php", {
             id_model: id_model
         },
         function (data, status){
@@ -95,8 +96,11 @@ function addDataModel(){
             $("#update_brand").val(model.brand);
             $("#update_qty").val(model.qty);
         }
-        );
-        $("#updateDataModel").modal("show");
-    }
+    );
+    $("#updateDataModel").modal("show");
+
+}
+
+function updateModel(){
 
 }
