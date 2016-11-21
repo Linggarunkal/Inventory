@@ -102,5 +102,22 @@ function getDetailModel(id_model){
 }
 
 function updateModel(){
+    var product_name = $("#update_product_name").val();
+    console.log(product_name);
+    var type = $("#update_type").val();
+    var brand = $("#update_brand").val();
+    var qty = $("#update_qty").val();
+    var id_model = $("#model_id_hidden").val();
 
+    $.post("ajax/updateModel.php", {
+        id_model : id_model,
+        product_name: product_name,
+        type: type,
+        brand: brand,
+        qty: qty
+    },
+    function(data, status){
+        $("#updateDataModel").modal("hide");
+        readModel();
+    });
 }
