@@ -9,7 +9,7 @@ include('connection.php');
 
 if(isset($_POST['id_user']) && isset($_POST['id_user']) != ""){
     $user_id = $_POST['id_user'];
-    $query = "select fname, lname, username, password, email, id_divisi from user_tb where id_user = '$user_id'";
+    $query = "select fname, lname, username, password, email, id_divisi, id_level from user_tb where id_user = '$user_id'";
     $result = $conn->query($query);
 
     if(!$result){

@@ -272,7 +272,7 @@ include('ajax/connection.php');
 
 <!-- Update user  -->
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="userUpdate">
-    <div class="modal-dialog" role="document" style="width: 500px">
+    <div class="modal-dialog" role="document" style="width: 580px">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -289,12 +289,18 @@ include('ajax/connection.php');
                         </td>
                     </tr>
                     <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
                         <td>
                             <label>Nama Belakang</label>
                         </td>
                         <td>
                             <input type="text" class="form-control" id="lname_update">
                         </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
@@ -317,12 +323,18 @@ include('ajax/connection.php');
                         </td>
                     </tr>
                     <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
                         <td>
                             <label>Email</label>
                         </td>
                         <td>
                             <input type="text" class="form-control" id="email_update">
                         </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
@@ -333,12 +345,18 @@ include('ajax/connection.php');
                         </td>
                     </tr>
                     <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
                         <td>
                             <label>Password</label>
                         </td>
                         <td>
                             <input type="text" class="form-control" id="password_update">
                         </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
@@ -359,6 +377,9 @@ include('ajax/connection.php');
                                 ?>
                             </select>
                         </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
@@ -388,7 +409,7 @@ include('ajax/connection.php');
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" id = "update_user" onclick="">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id = "update_user" onclick="updateUser()">Save</button>
                 <input type="hidden" id="detail_user_hidden">
             </div>
         </div>

@@ -107,21 +107,43 @@ function getDetailUser(id_user){
         var user = JSON.parse(data);
         $("#fname_update").val(user.fname);
         $("#lname_update").val(user.lname);
-        // console.log(user.id_divisi);
         $("#id_divisi_update").val(user.id_divisi);
-        
         $("#email_update").val(user.email);
         $("#username_update").val(user.username);
         $("#password_update").val(user.password);
-        $("#id_level_update").append($('<option>',{
-            value: user.id_level,
-            text: 'testing2'
-        }));
-        $("#id_manager_update").append($('<option>',{
-            value: user.id_manager,
-            text: 'testing3'
-        }));
+        $("#id_level_update").val(user.id_level);
+        $("#id_manager_update").val(user.id_manager);
 
     });
     $("#userUpdate").modal("show");
+}
+
+function updateUser(){
+
+    var fname = $("#fname_update").val();
+    console.log(fname);
+    var lname = $("#lname_update").val();
+    var id_divisi = $("#id_divisi_update").val();
+    var email = $("#email_update").val();
+    var username = $("#username_update").val();
+    var password = $("#password_update").val();
+    var id_level = $("#id_level_update").val();
+    var id_manager = $("#id_manager_update").val();
+    var id_user = $("#detail_user_hidden").val();
+
+    $.post("ajax/updateUser.php",{
+        id_user: id_user,
+        fname: fname,
+        lname: lname,
+        username: username,
+        password: password,
+        id_divisi: id_divisi,
+        id_level: id_level,
+        id_manager: id_manager,
+        email: email
+    },
+    function(data, status){
+        $("#userUpdate").modal("hide");
+        readUser();
+    });
 }
