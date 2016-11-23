@@ -1,0 +1,85 @@
+select * from user_tb;
+select * from v_user;
+desc user_tb;
+show tables;
+create table model_tb (id_model VARCHAR(10) PRIMARY KEY NOT NULL DEFAULT '0', product_name varchar(30),
+  type varchar(30), brand varchar(30), create_user int(10), create_date date);
+
+create table model_tb_seq (id int not NULL AUTO_INCREMENT PRIMARY KEY );
+
+DELIMITER $$
+create TRIGGER tg_model_insert
+  BEFORE INSERT on model_tb
+  FOR EACH ROW
+  BEGIN
+    INSERT INTO model_tb_seq VALUE (null);
+    set NEW.id_model = concat('MDL', LPAD(last_insert_id(), 3, '0'));
+  END $$
+DELIMITER ;
+
+insert into model_tb (product_name, type, brand, create_user, create_date) VALUES ("Lenovo Thinkpad E450", "Laptop", "Lenovo", 002, NOW());
+
+select date_format(create_date, '%d-%M-%Y') as create_date from model_tb;
+select * from model_tb;
+alter table model_tb MODIFY create_user VARCHAR(10);
+alter TABLE model_tb add FOREIGN KEY (create_user) REFERENCES user_tb(id_user);
+
+select * from user_tb;
+select product_name, type, brand, create_user, create_date from model_tb;
+
+create view v_model AS
+select model_tb.id_model, model_tb.product_name, model_tb.type, model_tb.brand, user_tb.fname, model_tb.qty, date_format(model_tb.create_date, '%d/%m/%Y') as create_date
+from model_tb
+inner join user_tb
+on model_tb.create_user = user_tb.id_user;
+
+select * from v_model;
+alter table model_tb add COLUMN qty int(10);
+update model_tb set qty = 10 where id_model = 'MDL002';
+select * from model_tb;
+drop VIEW v_model;
+
+select * from model_tb;
+
+
+alter TABLE model_tb drop COLUMN create_user;
+
+desc model_tb;
+
+create TABLE barang_tb (id_barang VARCHAR(10) PRIMARY KEY NOT NULL DEFAULT '0',
+id_model VARCHAR(10), condition_barang varchar(20), status VARCHAR(20), create_on date, create_by VARCHAR(10), remarks VARCHAR(50));
+
+
+create table barang_tb_seq (id INT not NULL PRIMARY KEY AUTO_INCREMENT);
+
+
+DELIMITER $$
+CREATE TRIGGER tg_barang_seq
+BEFORE INSERT on barang_tb
+  FOR EACH ROW
+  BEGIN
+    INSERT INTO barang_tb_seq VALUE (NULL);
+    set NEW.id_barang = concat('BRG', LPAD(last_insert_id(), 3, '0'));
+  END $$
+
+SHOW TRIGGER;
+
+select * from barang_tb;
+select * from model_tb;
+
+select * from user_tb;
+update user_tb set id_manager = NULL where id_user = 'USR007';
+desc user_tb;
+
+alter table barang_tb add FOREIGN KEY barang_tb(id_model) REFERENCES model_tb(id_model);
+desc barang_tb;
+
+select model_tb.product_name, model_tb.brand, sum(barang_tb.qty) as qty
+from model_tb
+INNER JOIN barang_tb
+on model_tb.id_model=barang_tb.id_model
+GROUP BY product_name;
+
+
+alter table barang_tb add COLUMN qty int(10);
+
