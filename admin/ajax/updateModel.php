@@ -13,9 +13,9 @@ if(isset($_POST)){
     $product_name = $_POST['product_name'];
     $type = $_POST['type'];
     $brand = $_POST['brand'];
-    $qty = $_POST['qty'];
+//    $qty = $_POST['qty'];
 
-    $query = "UPDATE model_tb set product_name='$product_name', type='$type', brand= '$brand', qty='$qty' where id_model='$id_model'  ";
+    $query = "UPDATE model_tb set product_name='$product_name', type='$type', brand= '$brand' where id_model='$id_model'  ";
     $result = $conn->query($query);
     if(!$result){
         die("Connection Time Out". $conn->mysqli_error);

@@ -6,15 +6,15 @@
  * Time: 7:47 AM
  */
 
-if(isset($_POST['product_name']) && isset($_POST['type']) && isset($_POST['brand']) && isset($_POST['qty'])){
+if(isset($_POST['product_name']) && isset($_POST['type']) && isset($_POST['brand'])){
     include('connection.php');
 
     $product_name = $_POST['product_name'];
     $type = $_POST['type'];
     $brand = $_POST['brand'];
-    $qty = $_POST['qty'];
+//    $qty = $_POST['qty'];
 
-    $query = "INSERT INTO model_tb (product_name, type, brand, create_date, qty) VALUES ('$product_name', '$type', '$brand', now(), '$qty')";
+    $query = "INSERT INTO model_tb (product_name, type, brand, create_date) VALUES ('$product_name', '$type', '$brand', now())";
 
     if($conn->query($query) === TRUE){
         echo "New Record Added";

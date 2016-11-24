@@ -83,3 +83,18 @@ GROUP BY product_name;
 
 alter table barang_tb add COLUMN qty int(10);
 
+select id_model, product_name from model_tb;
+
+select * from barang_tb;
+create VIEW v_barang AS
+select barang_tb.id_barang, model_tb.product_name, barang_tb.condition_barang, barang_tb.status, barang_tb.qty, barang_tb.create_on, barang_tb.remarks
+from model_tb
+INNER join barang_tb
+on model_tb.id_model = barang_tb.id_model;
+
+select * from v_barang;
+
+drop view v_barang;
+
+
+

@@ -9,7 +9,7 @@ include('connection.php');
 
 if(isset($_POST['id_model']) && isset($_POST['id_model']) != ""){
     $model_id = $_POST['id_model'];
-    $query = "select product_name, type, brand, qty from model_tb where id_model = '$model_id'";
+    $query = "select product_name, type, brand from model_tb where id_model = '$model_id'";
     $result = $conn->query($query);
 
     if(!$result){

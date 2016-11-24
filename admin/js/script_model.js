@@ -64,13 +64,12 @@ function addDataModel(){
     var product_name = $("#product_name").val();
     var type = $("#type").val();
     var brand = $("#brand").val();
-    var qty = $("#qty").val();
+    //var qty = $("#qty").val();
 
     $.post("ajax/addModel.php",{
         product_name : product_name,
         type : type,
-        brand : brand,
-        qty : qty
+        brand : brand
     }, function(data, status){
         $("#submitModel").modal("hide");
 
@@ -79,7 +78,7 @@ function addDataModel(){
         $("#product_name").val("");
         $("#type").val("");
         $("#brand").val("");
-        $("#qty").val("");
+        //$("#qty").val("");
 
     });
 }
@@ -94,7 +93,7 @@ function getDetailModel(id_model){
             $("#update_product_name").val(model.product_name);
             $("#update_type").val(model.type);
             $("#update_brand").val(model.brand);
-            $("#update_qty").val(model.qty);
+            //$("#update_qty").val(model.qty);
         }
     );
     $("#updateDataModel").modal("show");
@@ -106,15 +105,14 @@ function updateModel(){
     console.log(product_name);
     var type = $("#update_type").val();
     var brand = $("#update_brand").val();
-    var qty = $("#update_qty").val();
+    //var qty = $("#update_qty").val();
     var id_model = $("#model_id_hidden").val();
 
     $.post("ajax/updateModel.php", {
         id_model : id_model,
         product_name: product_name,
         type: type,
-        brand: brand,
-        qty: qty
+        brand: brand
     },
     function(data, status){
         $("#updateDataModel").modal("hide");

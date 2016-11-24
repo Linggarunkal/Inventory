@@ -148,7 +148,7 @@ include('ajax/connection.php');
 
 <!-- dialog form insert user -->
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="userSubmit">
-    <div class="modal-dialog" role="document" style="width: 500px">
+    <div class="modal-dialog" role="document" style="width: 580px">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -165,12 +165,18 @@ include('ajax/connection.php');
                         </td>
                     </tr>
                     <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
                         <td>
                             <label>Nama Belakang</label>
                         </td>
                         <td>
                             <input type="text" class="form-control" id="lname">
                         </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
@@ -193,12 +199,18 @@ include('ajax/connection.php');
                         </td>
                     </tr>
                     <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
                         <td>
                             <label>Email</label>
                         </td>
                         <td>
                             <input type="text" class="form-control" id="email">
                         </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
@@ -209,12 +221,18 @@ include('ajax/connection.php');
                         </td>
                     </tr>
                     <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
                         <td>
                             <label>Password</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" id="password">
+                            <input type="password" class="form-control" id="password">
                         </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
@@ -235,6 +253,9 @@ include('ajax/connection.php');
                                 ?>
                             </select>
                         </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
@@ -276,7 +297,7 @@ include('ajax/connection.php');
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Insert User</h4>
+                <h4 class="modal-title">Update User</h4>
             </div>
             <div class="modal-body">
                 <table style="width: 100%;font-size: 15px">
@@ -352,7 +373,7 @@ include('ajax/connection.php');
                             <label>Password</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" id="password_update">
+                            <input type="password" class="form-control" id="password_update">
                         </td>
                     </tr>
                     <tr>
@@ -416,32 +437,24 @@ include('ajax/connection.php');
     </div>
 </div>
 
-<!-- jQuery -->
 <script src="../vendor/jquery/jquery.min.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
-<!-- Metis Menu Plugin JavaScript -->
 <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
-<!-- Morris Charts JavaScript -->
 <script src="../vendor/raphael/raphael.min.js"></script>
 <script src="../vendor/morrisjs/morris.min.js"></script>
 <script src="../data/morris-data.js"></script>
 
-<!-- DataTables JavaScript -->
 <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
 <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
 <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
 
-<!-- Custom Theme JavaScript -->
 <script src="../dist/js/sb-admin-2.js"></script>
 
 
-<!-- ajax proses -->
 <script type="text/javascript" src="js/script_user.js"></script>
-<!-- end ajax -->
 
 
 </body>

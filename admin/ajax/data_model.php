@@ -15,8 +15,7 @@ $columns = array(
     0 => 'product_name',
     1 => 'type',
     2 => 'brand',
-    3 => 'qty',
-    4 => 'create_date'
+    3 => 'create_date'
 
 
 );
@@ -28,7 +27,7 @@ $query=mysqli_query($conn, $sql) or die("data_model: get data model");
 $totalData = mysqli_num_rows($query);
 $totalFiltered = $totalData;
 
-$sql = "SELECT id_model, product_name, type, brand, qty, create_date ";
+$sql = "SELECT id_model, product_name, type, brand, create_date ";
 $sql.=" FROM model_tb WHERE 1=1";
 if( !empty($requestData['search']['value']) ) {
     $sql.=" AND ( product_name LIKE '".$requestData['search']['value']."%' ";
@@ -54,7 +53,7 @@ while( $row=mysqli_fetch_array($query) ) {
     $nestedData[] = $row["type"];
     $nestedData[] = $row["brand"];
 //    $nestedData[] = $row["fname"];
-    $nestedData[] = $row["qty"];
+//    $nestedData[] = $row["qty"];
     $nestedData[] = $row["create_date"];
     $nestedData[] = '<button type="button" class="btn btn-default btn-sm center-block" onClick="getDetailModel(\''.$row['id_model'].'\')">Edit</button>';
 
