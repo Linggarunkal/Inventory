@@ -14,7 +14,7 @@ if(isset($_POST['product_name']) && isset($_POST['condition_barang']) && isset($
     $qty = $_POST['qty'];
     $remarks = $_POST['remarks'];
 
-    $query = "INSERT INTO barang_tb (id_model, condition_barang, status, qty, remarks) VALUES ('$product_name', '$condition_barang', '$status', '$qty', now(), '$remarks')";
+    $query = "INSERT INTO barang_tb (id_model, condition_barang, status, create_on, remarks, qty) VALUES ('$product_name', '$condition_barang', '$status', now(),'$remarks', '$qty')";
 
     if($conn->query($query) === TRUE){
         echo "New Record Added";
