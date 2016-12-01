@@ -67,7 +67,7 @@ $(function() {
             label: "Download Sales",
             value: 12
         }, {
-            label: "In-Store Sales",
+            label: "Sales",
             value: 30
         }, {
             label: "Mail-Order Sales",
