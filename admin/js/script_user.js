@@ -147,3 +147,12 @@ function updateUser(){
         readUser();
     });
 }
+
+//User control level 
+$("#id_level").on('change', function(){
+   if($(this).val() === "LVL003"){
+       $("#id_manager").attr('disabled', false);
+   }else{
+       $("#id_manager").attr('disabled', 'disabled');
+   }
+});

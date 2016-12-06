@@ -243,7 +243,7 @@ include('ajax/connection.php');
                                 $getlev = "select * from level_tb";
                                 $reslev = $conn->query($getlev);
                             ?>
-                            <select class = "form-control select2" name = "level" id = "id_level">
+                            <select class = "form-control select2" name="level" id="id_level">
                                 <?php
                                     if($reslev->num_rows > 0){
                                         while($row = $reslev->fetch_assoc()){
@@ -268,7 +268,7 @@ include('ajax/connection.php');
                                 $resManager = $conn->query($getManager);
 
                             ?>
-                            <select class = "form-control select2" name = "manager" id = "id_manager">
+                            <select class = "form-control select2" name = "manager" id="id_manager" disabled>
                                 <?php
 
                                     if($resManager->num_rows > 0){
