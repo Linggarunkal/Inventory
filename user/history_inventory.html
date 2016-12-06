@@ -192,7 +192,7 @@
                                         <td>Win 95+</td>
                                         <td class="center">4</td>
                                         <td class="center">X</td>
-                                        <td>View</td>
+                                        <td><button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#detailRequest">Detail</button></td>
                                     </tr>
                                     <tr class="even gradeC">
                                         <td>Trident</td>
@@ -200,7 +200,7 @@
                                         <td>Win 95+</td>
                                         <td class="center">5</td>
                                         <td class="center">C</td>
-                                        <td>View</td>
+                                        <td><button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#detailRequest">Detail</button></td>
                                     </tr>
                                     <tr class="odd gradeA">
                                         <td>Trident</td>
@@ -208,7 +208,7 @@
                                         <td>Win 95+</td>
                                         <td class="center">5.5</td>
                                         <td class="center">A</td>
-                                        <td>View</td>
+                                        <td><button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#detailRequest">Detail</button></td>
                                     </tr>
                                     <tr class="even gradeA">
                                         <td>Trident</td>
@@ -216,7 +216,7 @@
                                         <td>Win 98+</td>
                                         <td class="center">6</td>
                                         <td class="center">A</td>
-                                        <td>View</td>
+                                        <td><button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#detailRequest">Detail</button></td>
                                     </tr>
                                     <tr class="odd gradeA">
                                         <td>Trident</td>
@@ -224,7 +224,7 @@
                                         <td>Win XP SP2+</td>
                                         <td class="center">7</td>
                                         <td class="center">A</td>
-                                        <td>View</td>
+                                        <td><button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#detailRequest">Detail</button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -241,7 +241,33 @@
 
     </div>
 
-
+<!--Modal Detail history Request-->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="detailRequest">
+        <div class="modal-dialog" role="document" style="width: 500px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Insert Divisi</h4>
+                </div>
+                <div class="modal-body">
+                    <table style="width: 100%;font-size: 15px">
+                        <tr>
+                            <td>
+                                <label>Nama Divisi</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="divisi_name" name="divisi_name">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="addRecord()" id="add" name="add">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--End modal Deatail History Request-->
 
     <script src="../vendor/jquery/jquery.min.js"></script>
 
