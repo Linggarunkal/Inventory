@@ -1,3 +1,6 @@
+<?php
+include('ajax/connection.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -174,27 +177,25 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label>Text Input</label>
-                                            <input class="form-control">
+                                            <label>Title Request</label>
+                                            <input class="form-control" id="title" placeholder="Tittle Request">
                                             <!--<p class="help-block">Example block-level help text here.</p>-->
                                         </div>
                                         <div class="form-group">
-                                            <label>Text Input with Placeholder</label>
-                                            <input class="form-control" placeholder="Enter text">
+                                            <label>Date Request</label>
+                                            <input class="form-control" placeholder="Date Request" id="dateRequest" disabled>
                                         </div>
 
                                 </div>
                                 <div class="col-lg-6">
 
                                             <div class="form-group">
-                                                <label for="disabledSelect">Disabled input</label>
-                                                <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input">
+                                                <label>Due Date Request</label>
+                                                <input class="form-control" id="dueRequest" type="text" placeholder="Due Date Request" disabled>
                                             </div>
                                             <div class="form-group">
-                                                <label for="disabledSelect">Disabled select menu</label>
-                                                <select id="disabledSelect" class="form-control">
-                                                    <option>Disabled select</option>
-                                                </select>
+                                                <label>Notes</label>
+                                                <input type="text" class="form-control" id="note" placeholder="Notes">
                                             </div>
 
                                 </div>
@@ -204,24 +205,21 @@
                                         <thead>
                                         <tr>
                                             <th>Product Name</th>
-                                            <th>Type</th>
                                             <th>Qty</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr class="odd gradeX">
+                                        <!--<tr class="odd gradeX">
                                             <td>Trident</td>
-                                            <td>Internet Explorer 4.0</td>
                                             <td>Win 95+</td>
-                                            <td>Delete</td>
+                                            <td><button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="">x</button></td>
                                         </tr>
                                         <tr class="even gradeC">
                                             <td>Trident</td>
-                                            <td>Internet Explorer 5.0</td>
                                             <td>Win 95+</td>
-                                            <td>Delete</td>
-                                        </tr>
+                                            <td><button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="">x</button></td>
+                                        </tr>-->
                                         </tbody>
                                     </table>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addRequestProduct">Add Product</button>
@@ -260,10 +258,18 @@
                                 <label>Product Name</label>
                             </td>
                             <td>
-
+                                <?php
+                                    $getProduct = "select id_barang, product_name from v_stock_barang";
+                                    $resProduct = $conn->query($getProduct);
+                                ?>
                                 <select class="form-control select2" id="addProductName" name="addProductName">
-                                    <option>mukidi</option>
-                                    <option>suparman</option>
+                                    <?php
+                                        if($resProduct->num_rows > 0){
+                                            while($row = $resProduct->fetch_assoc()){
+                                                echo "<option value='".$row['id_barang']."'>".$row['product_name']."</option>";
+                                            }
+                                        }
+                                    ?>
                                 </select>
                             </td>
                         </tr>
@@ -311,6 +317,8 @@
                 searching: false
             });
         });
+
+
 
     </script>
 
