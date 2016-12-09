@@ -12,6 +12,7 @@ if(isset($_POST['id_barang']) && isset($_POST['qty'])){
     $id_barang = $_POST['id_barang'];
     $qty = $_POST['qty'];
 
+
     $query = "insert into temp_detbarang (id_barang, qty) VALUES ('$id_barang','$qty')";
     if($conn->query($query) === TRUE){
         echo "New Record Added";

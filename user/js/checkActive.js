@@ -4,9 +4,23 @@
 var pathname = window.location.href;
 var patch = "http://localhost/inventory_staging/user/form_request.html";
 if(pathname === patch){
-    page=1;
-    //alert("halaman ini halaman gahul"+page);
-}else{
+    //alert("alert ini page request");
     page=0;
-    //alert("Halaman Bukan form request"+page)
+    $.ajax({
+       type:"POST",
+        url: "ajax/checkTemp.php",
+        data:{
+            transaksi: page
+        }
+    });
+}else{
+    //alert("alert ini bukan page request")
+    page=1;
+    $.ajax({
+        type:"POST",
+        url: "ajax/checkTemp.php",
+        data:{
+            transaksi: page
+        }
+    });
 }

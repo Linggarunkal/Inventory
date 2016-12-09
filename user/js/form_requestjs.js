@@ -206,7 +206,7 @@ function getValue(data){
 }
 
 //For validasi input detail barang delbarang
-(function(){
+/*(function(){
     $('form > input').keyup(function(){
         var empty = false;
         $('form > input').each(function(){
@@ -220,13 +220,13 @@ function getValue(data){
             $('#addProduct').removeAttr('disabled');
         }
     });
-})()
+})()*/
 
-$(document).ready(function(){
+/*$(document).ready(function(){
     $('input[type="button"]').prop('disabled', true);
     $('input[type="text"]').keyup(function(){
         if($(this).val() != ''){
             $('input[type="button"]').prop('disabled', false);
         }
     })
-})
+})*/
