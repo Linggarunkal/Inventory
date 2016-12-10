@@ -57,20 +57,26 @@ if(SS<10){
 }
 var formatDue = mm + '/' + dd + '/' + yy + ' '+ HH + ':' + MM + ':' + SS;
 document.getElementById('dueRequest').value = formatDue;
-
+var addbarang;
 //addDetailBarang
 $(document).ready(function() {
-    var addbarang = $("#addDetailBarang").DataTable({
+    addbarang = $("#addDetailBarang").DataTable({
         "responsive": true,
         "bPaginate": false,
         "searching": false,
         "processing": true,
-        "serverSide": true,
+        "serverSide": false,
         "columnDefs": [{
             "targets": 0,
             "orderable": false,
             "searchable": false
         }],
+        /*"aoColumns":[
+            {"mDataProp":"Id"},
+            {"mDataProp":"NameItem"},
+            {"mDataProp":"qty"},
+            {"mDataProp":"action"}
+        ],
         "ajax": {
             url: "ajax/data_BarangReq.php",
             type: "post",
@@ -79,7 +85,7 @@ $(document).ready(function() {
                 $("#addDetailBarang").append('<tbody class="employee-grid-error"><tr><th colspan="3">Data Tidak ditemukan</th></tr></tbody>');
                 $("#addDetailBarang_processing").css("display", "none");
             }
-        }
+        }*/
     });
 
     $("#multiDelete").on('click',function() {
@@ -191,12 +197,30 @@ function send(){
 }
 function getValue(data){
     var tes = JSON.parse(data);
+    var qtyDB = parseInt(tes.qty);
+
     var productQty = $("#qtyProduct").val();
-    console.log(tes.qty+' data database');
-    console.log(productQty+' dari product');
-    if(productQty <= tes.qty){
+    console.log(tes.qty+' database');
+    console.log(productQty+' product');
+    if(productQty <= qtyDB){
         //alert("Barang Added");
-        addDeatilBarang();
+        var elmaddBarang = document.getElementById("addBarang");
+        var namaitem = elmaddBarang[elmaddBarang.selectedIndex].text;
+        var qty = $("#qtyProduct").val();
+        var dataAddDetail = new Array();
+        //var count = dataAddDetail.indexOf.length;
+
+        //dataAddDetail[0] = count;
+        dataAddDetail[0] = namaitem;
+        dataAddDetail[1] = qty;
+        dataAddDetail[2] = "<input onclick='deleterow()' type='button' class='btn btn-default btn-sm center-block buttonDelete' value='Delete'>";
+        console.log(dataAddDetail);
+        addbarang.row.add(dataAddDetail).draw();
+
+        //addbarang.fnAddData(dataAddDetail);
+        //addDeatilBarang();
+    }else if (productQty > qtyDB){
+        alert("Jumlah Barang Tidak Tersedia dalam System");
     }else{
         alert("Jumlah Barang Tidak Tersedia dalam System");
     }
@@ -230,3 +254,42 @@ function getValue(data){
         }
     })
 })*/
+
+
+
+function deleterow(){
+ var row = $(this).closest('tr');
+    var rowss = row[0];
+    addbarang.row(rowss).remove().draw();
+}
+
+function submitDetail(){
+    var arr = new  Array();
+    for(var i = 0;i <= addbarang.rows().length;i++){
+        var dataToSave = new  Object();
+        dataToSave.ProductName = addbarang.rows().data()[i][0];
+        dataToSave.Qty = addbarang.rows().data()[i][1];
+        arr.push(dataToSave);
+    }
+    console.log(arr);
+
+    $.ajax({
+        type: "POST",
+        url: "ajax/getBarang.php",
+        data: {
+           dataTosave: JSON.stringify(arr)
+
+        },
+        success: function(data){
+            //console.log(data);
+            barang(data);
+            return data;
+
+        }
+    })
+}
+
+function barang(data){
+    var barang = JSON.parse(data);
+    console.log(barang.Qty);
+}
