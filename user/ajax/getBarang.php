@@ -7,7 +7,8 @@
  */
 if(isset($_POST['dataTosave']) && isset($_POST['dataTosave']) != ""){
     $json = $_POST['dataTosave'];
-    echo $json;
+    echo $_POST['dataTosave'][1]['ProductName'];
+    //var_dump($json);
 
 
 }

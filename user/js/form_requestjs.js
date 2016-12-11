@@ -202,7 +202,9 @@ function getValue(data){
     var productQty = $("#qtyProduct").val();
     console.log(tes.qty+' database');
     console.log(productQty+' product');
-    if(productQty <= qtyDB){
+    if(productQty.length === 0){
+        alert("Jumlah Barang Tidak Tersedia dalam System");
+    }else if(productQty <= qtyDB){
         //alert("Barang Added");
         var elmaddBarang = document.getElementById("addBarang");
         var namaitem = elmaddBarang[elmaddBarang.selectedIndex].text;
@@ -219,8 +221,6 @@ function getValue(data){
 
         //addbarang.fnAddData(dataAddDetail);
         //addDeatilBarang();
-    }else if (productQty > qtyDB){
-        alert("Jumlah Barang Tidak Tersedia dalam System");
     }else{
         alert("Jumlah Barang Tidak Tersedia dalam System");
     }
@@ -265,31 +265,37 @@ function deleterow(){
 
 function submitDetail(){
     var arr = new  Array();
-    for(var i = 0;i <= addbarang.rows().length;i++){
+    console.log(addbarang.rows().count());
+    for(var i = 0;i < addbarang.rows().count();i++){
+
         var dataToSave = new  Object();
+        console.log(i);
+        //nsole.log(addbarang.rows().data()[i]);
         dataToSave.ProductName = addbarang.rows().data()[i][0];
+
         dataToSave.Qty = addbarang.rows().data()[i][1];
         arr.push(dataToSave);
+        console.log(dataToSave);
     }
     console.log(arr);
-
     $.ajax({
         type: "POST",
         url: "ajax/getBarang.php",
+        dataType: "json",
         data: {
-           dataTosave: JSON.stringify(arr)
+           dataTosave: arr
 
         },
         success: function(data){
-            //console.log(data);
-            barang(data);
+            console.log(data);
+            /*barang(data);
             return data;
-
+*/
         }
     })
 }
 
-function barang(data){
+/*function barang(data){
     var barang = JSON.parse(data);
     console.log(barang.Qty);
-}
+}*/
