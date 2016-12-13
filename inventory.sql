@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 06 Des 2016 pada 10.34
--- Versi Server: 10.1.13-MariaDB
+-- Generation Time: Dec 13, 2016 at 11:03 AM
+-- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -25,7 +25,7 @@ USE `inventory`;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `barang_tb`
+-- Table structure for table `barang_tb`
 --
 
 CREATE TABLE `barang_tb` (
@@ -39,16 +39,24 @@ CREATE TABLE `barang_tb` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `barang_tb`
+-- RELATIONS FOR TABLE `barang_tb`:
+--   `id_model`
+--       `model_tb` -> `id_model`
+--
+
+--
+-- Dumping data for table `barang_tb`
 --
 
 INSERT INTO `barang_tb` (`id_barang`, `id_model`, `condition_barang`, `status`, `create_on`, `remarks`, `qty`) VALUES
-('BRG002', 'MDL002', 'Stock', 'Bad', '2016-11-23', 'Barang Rusak di kembalikan', 2),
+('BRG002', 'MDL002', 'Stock', 'Bad', '2016-11-23', 'Barang Rusak di kembalikan', 14),
 ('BRG003', 'MDL002', 'Use', 'Good', '2016-11-23', 'barang in stock', 12),
-('BRG015', 'MDL008', 'Stock', 'Good', '2016-11-25', 'Ready di gudang', 12);
+('BRG015', 'MDL008', 'Stock', 'Good', '2016-11-25', 'Ready di gudang', 12),
+('BRG016', 'MDL009', 'Stock', 'Good', '2016-12-10', 'Barang Baru', 23),
+('BRG017', 'MDL010', 'Stock', 'Good', '2016-12-11', 'baru datang stock baru', 2);
 
 --
--- Trigger `barang_tb`
+-- Triggers `barang_tb`
 --
 DELIMITER $$
 CREATE TRIGGER `tg_barang_seq` BEFORE INSERT ON `barang_tb` FOR EACH ROW BEGIN
@@ -61,7 +69,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `barang_tb_seq`
+-- Table structure for table `barang_tb_seq`
 --
 
 CREATE TABLE `barang_tb_seq` (
@@ -69,7 +77,11 @@ CREATE TABLE `barang_tb_seq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `barang_tb_seq`
+-- RELATIONS FOR TABLE `barang_tb_seq`:
+--
+
+--
+-- Dumping data for table `barang_tb_seq`
 --
 
 INSERT INTO `barang_tb_seq` (`id`) VALUES
@@ -80,12 +92,14 @@ INSERT INTO `barang_tb_seq` (`id`) VALUES
 (5),
 (9),
 (12),
-(15);
+(15),
+(16),
+(17);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `catagory`
+-- Table structure for table `catagory`
 --
 
 CREATE TABLE `catagory` (
@@ -93,7 +107,11 @@ CREATE TABLE `catagory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `catagory`
+-- RELATIONS FOR TABLE `catagory`:
+--
+
+--
+-- Dumping data for table `catagory`
 --
 
 INSERT INTO `catagory` (`role`) VALUES
@@ -105,7 +123,28 @@ INSERT INTO `catagory` (`role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `divisi_tb`
+-- Table structure for table `detailpinjam_barang`
+--
+
+CREATE TABLE `detailpinjam_barang` (
+  `id_detailPinjam` int(10) NOT NULL,
+  `id_barang` varchar(10) DEFAULT NULL,
+  `id_pinjam` int(10) DEFAULT NULL,
+  `qty` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- RELATIONS FOR TABLE `detailpinjam_barang`:
+--   `id_barang`
+--       `barang_tb` -> `id_barang`
+--   `id_pinjam`
+--       `peminjaman_tb` -> `id_pinjam`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `divisi_tb`
 --
 
 CREATE TABLE `divisi_tb` (
@@ -114,7 +153,11 @@ CREATE TABLE `divisi_tb` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `divisi_tb`
+-- RELATIONS FOR TABLE `divisi_tb`:
+--
+
+--
+-- Dumping data for table `divisi_tb`
 --
 
 INSERT INTO `divisi_tb` (`id_divisi`, `divisi_name`) VALUES
@@ -123,7 +166,7 @@ INSERT INTO `divisi_tb` (`id_divisi`, `divisi_name`) VALUES
 ('DVS034', 'TeleMarketing');
 
 --
--- Trigger `divisi_tb`
+-- Triggers `divisi_tb`
 --
 DELIMITER $$
 CREATE TRIGGER `tg_divisi_insert` BEFORE INSERT ON `divisi_tb` FOR EACH ROW BEGIN
@@ -136,7 +179,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `divisi_tb_seq`
+-- Table structure for table `divisi_tb_seq`
 --
 
 CREATE TABLE `divisi_tb_seq` (
@@ -144,7 +187,11 @@ CREATE TABLE `divisi_tb_seq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `divisi_tb_seq`
+-- RELATIONS FOR TABLE `divisi_tb_seq`:
+--
+
+--
+-- Dumping data for table `divisi_tb_seq`
 --
 
 INSERT INTO `divisi_tb_seq` (`id_divisi`) VALUES
@@ -182,12 +229,13 @@ INSERT INTO `divisi_tb_seq` (`id_divisi`) VALUES
 (32),
 (33),
 (34),
-(35);
+(35),
+(36);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `level_tb`
+-- Table structure for table `level_tb`
 --
 
 CREATE TABLE `level_tb` (
@@ -196,7 +244,11 @@ CREATE TABLE `level_tb` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `level_tb`
+-- RELATIONS FOR TABLE `level_tb`:
+--
+
+--
+-- Dumping data for table `level_tb`
 --
 
 INSERT INTO `level_tb` (`id_level`, `role_level`) VALUES
@@ -206,7 +258,7 @@ INSERT INTO `level_tb` (`id_level`, `role_level`) VALUES
 ('LVL004', 'Group Head');
 
 --
--- Trigger `level_tb`
+-- Triggers `level_tb`
 --
 DELIMITER $$
 CREATE TRIGGER `tg_level_insert` BEFORE INSERT ON `level_tb` FOR EACH ROW BEGIN
@@ -219,7 +271,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `level_tb_seq`
+-- Table structure for table `level_tb_seq`
 --
 
 CREATE TABLE `level_tb_seq` (
@@ -227,7 +279,11 @@ CREATE TABLE `level_tb_seq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `level_tb_seq`
+-- RELATIONS FOR TABLE `level_tb_seq`:
+--
+
+--
+-- Dumping data for table `level_tb_seq`
 --
 
 INSERT INTO `level_tb_seq` (`id_level`) VALUES
@@ -239,7 +295,7 @@ INSERT INTO `level_tb_seq` (`id_level`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `model_tb`
+-- Table structure for table `model_tb`
 --
 
 CREATE TABLE `model_tb` (
@@ -251,16 +307,22 @@ CREATE TABLE `model_tb` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `model_tb`
+-- RELATIONS FOR TABLE `model_tb`:
+--
+
+--
+-- Dumping data for table `model_tb`
 --
 
 INSERT INTO `model_tb` (`id_model`, `product_name`, `type`, `brand`, `create_date`) VALUES
 ('MDL002', 'Lenovo Thinkpad E450', 'Laptop', 'Lenovo', '2016-11-18'),
 ('MDL004', 'Lenovo Thinkcentre Desktop E', 'Desktop', 'Lenovo', '2016-11-18'),
-('MDL008', 'Samsung Galaxy S3', 'Smartphone', 'Samsung', '2016-11-24');
+('MDL008', 'Samsung Galaxy S3', 'Smartphone', 'Samsung', '2016-11-24'),
+('MDL009', 'Cisco', 'Cisco Switch Catalyst', 'Cisco', '2016-12-10'),
+('MDL010', 'Mouse Wireless', 'Property Komputer', 'Lenovo', '2016-12-11');
 
 --
--- Trigger `model_tb`
+-- Triggers `model_tb`
 --
 DELIMITER $$
 CREATE TRIGGER `tg_model_insert` BEFORE INSERT ON `model_tb` FOR EACH ROW BEGIN
@@ -273,7 +335,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `model_tb_seq`
+-- Table structure for table `model_tb_seq`
 --
 
 CREATE TABLE `model_tb_seq` (
@@ -281,7 +343,11 @@ CREATE TABLE `model_tb_seq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `model_tb_seq`
+-- RELATIONS FOR TABLE `model_tb_seq`:
+--
+
+--
+-- Dumping data for table `model_tb_seq`
 --
 
 INSERT INTO `model_tb_seq` (`id`) VALUES
@@ -292,12 +358,53 @@ INSERT INTO `model_tb_seq` (`id`) VALUES
 (5),
 (6),
 (7),
-(8);
+(8),
+(9),
+(10);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_tb`
+-- Table structure for table `peminjaman_tb`
+--
+
+CREATE TABLE `peminjaman_tb` (
+  `id_pinjam` int(10) NOT NULL,
+  `id_user` varchar(10) DEFAULT NULL,
+  `requestDate` datetime DEFAULT NULL,
+  `requestDue` datetime DEFAULT NULL,
+  `note` varchar(100) DEFAULT NULL,
+  `status` enum('approve','reject','waiting') DEFAULT 'waiting'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- RELATIONS FOR TABLE `peminjaman_tb`:
+--   `id_user`
+--       `user_tb` -> `id_user`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `temp_detbarang`
+--
+
+CREATE TABLE `temp_detbarang` (
+  `id_temp` int(10) NOT NULL,
+  `id_barang` varchar(10) DEFAULT NULL,
+  `qty` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- RELATIONS FOR TABLE `temp_detbarang`:
+--   `id_barang`
+--       `barang_tb` -> `id_barang`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_tb`
 --
 
 CREATE TABLE `user_tb` (
@@ -313,16 +420,27 @@ CREATE TABLE `user_tb` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user_tb`
+-- RELATIONS FOR TABLE `user_tb`:
+--   `id_divisi`
+--       `divisi_tb` -> `id_divisi`
+--   `id_level`
+--       `level_tb` -> `id_level`
+--   `id_manager`
+--       `user_tb` -> `id_user`
+--
+
+--
+-- Dumping data for table `user_tb`
 --
 
 INSERT INTO `user_tb` (`id_user`, `fname`, `lname`, `username`, `password`, `id_divisi`, `id_level`, `id_manager`, `email`) VALUES
 ('USR001', 'Linggar', 'Kurniawan', 'lkurniawan', 'mukidi', 'DVS006', 'LVL001', NULL, 'linggar@mail.com'),
 ('USR003', 'Eriya', 'madhona', 'emadhona', 'mukidi', 'DVS006', 'LVL003', 'USR001', 'eriya@mail.com'),
-('USR007', 'Samson', 'Samson', 'sbetawi', 'mukidi', 'DVS010', 'LVL001', NULL, 'samson@mail.com');
+('USR007', 'Samson', 'Samson', 'sbetawi', 'mukidi', 'DVS010', 'LVL001', NULL, 'samson@mail.com'),
+('USR008', 'mukidi', 'mukidi', 'smukidi', 'mukidi', 'DVS006', 'LVL003', 'USR001', 'mukidi@mail.com');
 
 --
--- Trigger `user_tb`
+-- Triggers `user_tb`
 --
 DELIMITER $$
 CREATE TRIGGER `tg_user_tb_insert` BEFORE INSERT ON `user_tb` FOR EACH ROW begin
@@ -335,7 +453,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_tb_seq`
+-- Table structure for table `user_tb_seq`
 --
 
 CREATE TABLE `user_tb_seq` (
@@ -343,7 +461,11 @@ CREATE TABLE `user_tb_seq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user_tb_seq`
+-- RELATIONS FOR TABLE `user_tb_seq`:
+--
+
+--
+-- Dumping data for table `user_tb_seq`
 --
 
 INSERT INTO `user_tb_seq` (`id`) VALUES
@@ -353,7 +475,8 @@ INSERT INTO `user_tb_seq` (`id`) VALUES
 (4),
 (5),
 (6),
-(7);
+(7),
+(8);
 
 -- --------------------------------------------------------
 
@@ -381,6 +504,29 @@ CREATE TABLE `v_model` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `v_stock_barang`
+--
+CREATE TABLE `v_stock_barang` (
+`id_barang` varchar(10)
+,`product_name` varchar(30)
+,`qty` int(10)
+,`status` varchar(20)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_temp_detbarang`
+--
+CREATE TABLE `v_temp_detbarang` (
+`id_temp` int(10)
+,`product_name` varchar(30)
+,`qty` int(10)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Stand-in structure for view `v_user`
 --
 CREATE TABLE `v_user` (
@@ -396,7 +542,7 @@ CREATE TABLE `v_user` (
 -- --------------------------------------------------------
 
 --
--- Struktur untuk view `v_barang`
+-- Structure for view `v_barang`
 --
 DROP TABLE IF EXISTS `v_barang`;
 
@@ -405,7 +551,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Struktur untuk view `v_model`
+-- Structure for view `v_model`
 --
 DROP TABLE IF EXISTS `v_model`;
 
@@ -414,7 +560,25 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Struktur untuk view `v_user`
+-- Structure for view `v_stock_barang`
+--
+DROP TABLE IF EXISTS `v_stock_barang`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_stock_barang`  AS  select `barang_tb`.`id_barang` AS `id_barang`,`model_tb`.`product_name` AS `product_name`,`barang_tb`.`qty` AS `qty`,`barang_tb`.`status` AS `status` from (`model_tb` join `barang_tb` on((`model_tb`.`id_model` = `barang_tb`.`id_model`))) where (`barang_tb`.`condition_barang` = 'Stock') ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_temp_detbarang`
+--
+DROP TABLE IF EXISTS `v_temp_detbarang`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_temp_detbarang`  AS  select `temp_detbarang`.`id_temp` AS `id_temp`,`model_tb`.`product_name` AS `product_name`,`temp_detbarang`.`qty` AS `qty` from ((`model_tb` join `barang_tb` on((`model_tb`.`id_model` = `barang_tb`.`id_model`))) join `temp_detbarang` on((`barang_tb`.`id_barang` = `temp_detbarang`.`id_barang`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_user`
 --
 DROP TABLE IF EXISTS `v_user`;
 
@@ -436,6 +600,14 @@ ALTER TABLE `barang_tb`
 --
 ALTER TABLE `barang_tb_seq`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `detailpinjam_barang`
+--
+ALTER TABLE `detailpinjam_barang`
+  ADD PRIMARY KEY (`id_detailPinjam`),
+  ADD KEY `id_barang` (`id_barang`),
+  ADD KEY `id_pinjam` (`id_pinjam`);
 
 --
 -- Indexes for table `divisi_tb`
@@ -474,6 +646,20 @@ ALTER TABLE `model_tb_seq`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `peminjaman_tb`
+--
+ALTER TABLE `peminjaman_tb`
+  ADD PRIMARY KEY (`id_pinjam`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Indexes for table `temp_detbarang`
+--
+ALTER TABLE `temp_detbarang`
+  ADD PRIMARY KEY (`id_temp`),
+  ADD KEY `id_barang` (`id_barang`);
+
+--
 -- Indexes for table `user_tb`
 --
 ALTER TABLE `user_tb`
@@ -496,12 +682,17 @@ ALTER TABLE `user_tb_seq`
 -- AUTO_INCREMENT for table `barang_tb_seq`
 --
 ALTER TABLE `barang_tb_seq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `detailpinjam_barang`
+--
+ALTER TABLE `detailpinjam_barang`
+  MODIFY `id_detailPinjam` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `divisi_tb_seq`
 --
 ALTER TABLE `divisi_tb_seq`
-  MODIFY `id_divisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_divisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `level_tb_seq`
 --
@@ -511,24 +702,53 @@ ALTER TABLE `level_tb_seq`
 -- AUTO_INCREMENT for table `model_tb_seq`
 --
 ALTER TABLE `model_tb_seq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `peminjaman_tb`
+--
+ALTER TABLE `peminjaman_tb`
+  MODIFY `id_pinjam` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `temp_detbarang`
+--
+ALTER TABLE `temp_detbarang`
+  MODIFY `id_temp` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user_tb_seq`
 --
 ALTER TABLE `user_tb_seq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `barang_tb`
+-- Constraints for table `barang_tb`
 --
 ALTER TABLE `barang_tb`
   ADD CONSTRAINT `barang_tb` FOREIGN KEY (`id_model`) REFERENCES `model_tb` (`id_model`);
 
 --
--- Ketidakleluasaan untuk tabel `user_tb`
+-- Constraints for table `detailpinjam_barang`
+--
+ALTER TABLE `detailpinjam_barang`
+  ADD CONSTRAINT `detailpinjam_barang_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `barang_tb` (`id_barang`),
+  ADD CONSTRAINT `detailpinjam_barang_ibfk_2` FOREIGN KEY (`id_pinjam`) REFERENCES `peminjaman_tb` (`id_pinjam`);
+
+--
+-- Constraints for table `peminjaman_tb`
+--
+ALTER TABLE `peminjaman_tb`
+  ADD CONSTRAINT `peminjaman_tb_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user_tb` (`id_user`);
+
+--
+-- Constraints for table `temp_detbarang`
+--
+ALTER TABLE `temp_detbarang`
+  ADD CONSTRAINT `temp_detbarang_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `barang_tb` (`id_barang`);
+
+--
+-- Constraints for table `user_tb`
 --
 ALTER TABLE `user_tb`
   ADD CONSTRAINT `user_tb_ibfk_1` FOREIGN KEY (`id_divisi`) REFERENCES `divisi_tb` (`id_divisi`),
