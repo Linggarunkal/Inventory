@@ -210,13 +210,11 @@ function getValue(data){
         var namaitem = elmaddBarang[elmaddBarang.selectedIndex].text;
         var qty = $("#qtyProduct").val();
         var dataAddDetail = new Array();
-        //var count = dataAddDetail.indexOf.length;
-
-        //dataAddDetail[0] = count;
         dataAddDetail[0] = namaitem;
         dataAddDetail[1] = qty;
         dataAddDetail[2] = "<input onclick='deleterow()' type='button' class='btn btn-default btn-sm center-block buttonDelete' value='Delete'>";
-        console.log(dataAddDetail);
+        //console.log(dataAddDetail);
+        //console.log(addbarang.indexOf(namaitem));
         addbarang.row.add(dataAddDetail).draw();
 
         //addbarang.fnAddData(dataAddDetail);
@@ -265,7 +263,11 @@ function deleterow(){
 
 function submitDetail(){
     var arr = new  Array();
-    console.log(addbarang.rows().count());
+    //console.log(addbarang.rows().count());
+    var title = $("#title").val();
+    var reqDate = $("#dateRequest").val();
+    var dueDate = $("#dueRequest").val();
+    var note = $("#note").val();
     for(var i = 0;i < addbarang.rows().count();i++){
 
         var dataToSave = new  Object();
@@ -275,27 +277,34 @@ function submitDetail(){
 
         dataToSave.Qty = addbarang.rows().data()[i][1];
         arr.push(dataToSave);
-        console.log(dataToSave);
+        //console.log(dataToSave);
     }
-    console.log(arr);
+    //console.log(arr);
     $.ajax({
         type: "POST",
         url: "ajax/getBarang.php",
         dataType: "json",
         data: {
-           dataTosave: arr
+           dataTosave: arr,
+            title: title,
+            reqDate: reqDate,
+            dueDate: dueDate,
+            note: note
+
 
         },
         success: function(data){
             console.log(data);
-            /*barang(data);
-            return data;
-*/
         }
     })
 }
 
-/*function barang(data){
-    var barang = JSON.parse(data);
-    console.log(barang.Qty);
-}*/
+function validasiAndSubmit(){
+    var title_check = $("#title").val();
+    if(title_check.length === 0){
+        alert("Mohon Isi Title Request Terlebih dahulu ");
+    }else{
+        submitDetail();
+    }
+}
+
