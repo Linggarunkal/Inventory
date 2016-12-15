@@ -208,11 +208,13 @@ function getValue(data){
         //alert("Barang Added");
         var elmaddBarang = document.getElementById("addBarang");
         var namaitem = elmaddBarang[elmaddBarang.selectedIndex].text;
+        var id_barang = $("#addBarang").val();
         var qty = $("#qtyProduct").val();
         var dataAddDetail = new Array();
-        dataAddDetail[0] = namaitem;
-        dataAddDetail[1] = qty;
-        dataAddDetail[2] = "<input onclick='deleterow()' type='button' class='btn btn-default btn-sm center-block buttonDelete' value='Delete'>";
+        dataAddDetail[0] = id_barang;
+        dataAddDetail[1] = namaitem;
+        dataAddDetail[2] = qty;
+        dataAddDetail[3] = "<input onclick='deleterow()' type='button' class='btn btn-default btn-sm center-block buttonDelete' value='Delete'>";
         //console.log(dataAddDetail);
         //console.log(addbarang.indexOf(namaitem));
         addbarang.row.add(dataAddDetail).draw();
@@ -264,6 +266,7 @@ function deleterow(){
 function submitDetail(){
     var arr = new  Array();
     //console.log(addbarang.rows().count());
+    var id_user = $("#hidden_user_id").val();
     var title = $("#title").val();
     var reqDate = $("#dateRequest").val();
     var dueDate = $("#dueRequest").val();
@@ -273,9 +276,10 @@ function submitDetail(){
         var dataToSave = new  Object();
         console.log(i);
         //nsole.log(addbarang.rows().data()[i]);
-        dataToSave.ProductName = addbarang.rows().data()[i][0];
+        dataToSave.id_barang = addbarang.rows().data()[i][0];
+        dataToSave.ProductName = addbarang.rows().data()[i][1];
 
-        dataToSave.Qty = addbarang.rows().data()[i][1];
+        dataToSave.Qty = addbarang.rows().data()[i][2];
         arr.push(dataToSave);
         //console.log(dataToSave);
     }
@@ -286,6 +290,7 @@ function submitDetail(){
         dataType: "json",
         data: {
            dataTosave: arr,
+            id_user: id_user,
             title: title,
             reqDate: reqDate,
             dueDate: dueDate,

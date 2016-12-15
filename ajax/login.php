@@ -15,7 +15,7 @@ $conn = mysqli_connect($servername, $username, $password, $dbname) or die("Conne
 if(isset($_POST['username']) && isset($_POST['username']) != ""){
     $username = $_POST['username'];
 
-    $query = "select user_tb.username, user_tb.password, level_tb.role_level
+    $query = "select user_tb.id_user, user_tb.username, user_tb.password, level_tb.role_level
               from user_tb
               INNER join level_tb
               on user_tb.id_level = level_tb.id_level where username = '$username'";

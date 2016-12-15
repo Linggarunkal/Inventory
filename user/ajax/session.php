@@ -7,9 +7,13 @@
  */
 
 session_start();
-if(isset($_POST['username']) && isset($_POST['username'])){
+if(isset($_POST['username']) && isset($_POST['id_user']) != ""){
     $username = $_POST['username'];
-    echo $username;
-    $_SESSION[$username];
-    echo $_SESSION['username'];
+    $id_user = $_POST['id_user'];
+
+    $_SESSION['username'] = $username;
+    $_SESSION['id_user'] = $id_user;
+    //echo $_SESSION['username'];
+    //echo $_SESSION['id_user'];
+
 }

@@ -1,6 +1,8 @@
 <?php
 include('ajax/connection.php');
+include('ajax/session.php');
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -112,10 +114,10 @@ include('ajax/connection.php');
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a><i class="fa fa-user fa-fw"></i> <?php echo $_SESSION['username'];?></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
+                        <!--<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>-->
                         <li class="divider"></li>
                         <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
@@ -177,8 +179,9 @@ include('ajax/connection.php');
                             <div class="row">
                                 <div class="col-lg-6">
                                         <div class="form-group">
+                                            <input type="hidden" class="form-control" id="hidden_user_id" value="<?php echo $_SESSION['id_user'];?>" disabled>
                                             <label>Title Request</label>
-                                            <input class="form-control" id="title" placeholder="Tittle Request">
+                                            <input class="form-control" id="title" placeholder="Title Request">
                                             <!--<p class="help-block">Example block-level help text here.</p>-->
                                         </div>
                                         <div class="form-group">
@@ -204,7 +207,7 @@ include('ajax/connection.php');
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="addDetailBarang">
                                         <thead>
                                         <tr>
-                                            <!--<th>No</th>-->
+                                            <th>Kode Barang</th>
                                             <th>Product Name</th>
                                             <th>Qty</th>
                                             <th>Action</th>

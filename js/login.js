@@ -38,14 +38,15 @@ function getData(data){
     var dataLogin = JSON.parse(data);
     var txtUsername = $("#username").val();
     var txtPassword = $("#password").val();
-
+    console.log(dataLogin.id_user);
     if(dataLogin.username === txtUsername && dataLogin.password === txtPassword){
         if(dataLogin.role_level === "User"){
             $.ajax({
                 type: "POST",
                 url: "user/ajax/session.php",
                 data:{
-                    username: dataLogin.username
+                    username: dataLogin.username,
+                    id_user: dataLogin.id_user
                 }
             });
             window.location.href='user/index.html';
